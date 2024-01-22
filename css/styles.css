@@ -17,6 +17,14 @@ body {
     color: white;
 }
 
+.titleTable {
+    text-align: center;
+}
+
+.room {
+    text-align: center;
+}
+
 .success {
     background-color: rgb(113, 246, 113);
     color: rgb(0, 0, 0);

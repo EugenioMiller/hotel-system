@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Administrar</h1>
 
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-primary">
             <td class= "titleTable">Número de habitación</td>
             <td class= "titleTable">Cantidad de camas</td>
             <td class="titleTable">Aire acondicionado</td>
@@ -19,12 +19,30 @@
                     <tr>
                         <td class="room"><b>{$room->room_number}</b></td>
                         <td class="room"><b>{$room->beds}</b></td>
-                        <td class="room">{$room->air}</td>
-                        <td class="room">{$room->tv}</td>
-                        <td class="room">{$room->wifi}</td>
+                        <td class="room">
+                            {if $room->air === 1}
+                            SI
+                            {else}
+                            NO
+                            {/if}
+                        </td>
+                        <td class="room">
+                            {if $room->tv === 1}
+                            SI
+                            {else}
+                            NO
+                            {/if}
+                        </td>
+                        <td class="room">
+                            {if $room->wifi === 1}
+                            SI
+                            {else}
+                            NO
+                            {/if}
+                        </td>
                         <td class="room">{$room->price}</td>
-                        <td> <a class="btn btn-outline-success" href="editRoom/{$room->room_number}">Editar</a></td>
-                        <td> <a class="btn btn-outline-danger" href="deleteRoom/{$room->room_number}">Eliminar</a></td>
+                        <td class="room"> <a class="btn btn-outline-success" href="editRoom/{$room->room_number}">Editar</a></td>
+                        <td class="room"> <a class="btn btn-outline-danger" href="deleteRoom/{$room->room_number}">Eliminar</a></td>
                     </tr>
                 {/foreach}
     </table>

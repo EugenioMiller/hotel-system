@@ -12,9 +12,10 @@ class UserView {
         $this->smarty->assign('titulo', "Hotel");
     }
 
-    public function showHome($userName = null, $admin = null, $error = null) {
+    public function showHome($userName = null, $admin = null, $user_id = null, $error = null) {
         $this->smarty->assign('userName', $userName);
         $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
         $this->smarty->assign('error', $error);
         $this->smarty->display('home.tpl');
     }
@@ -59,5 +60,27 @@ class UserView {
         $this->smarty->assign('check_in', $check_in);
         $this->smarty->assign('check_out', $check_out);
         $this->smarty->display('errorReserved.tpl');
+    }
+
+    public function showBookings($userName = null, $admin = null, $user_id = null, $bookings){
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->assign('bookings', $bookings);
+        $this->smarty->display('bookings.tpl');
+    }
+
+    public function successCancel($userName = null, $admin = null,  $user_id, ) {
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->display('successCancel.tpl');
+    }
+
+    public function failCancel($userName = null, $admin = null,  $user_id, ) {
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->display('failCancel.tpl');
     }
 }

@@ -48,7 +48,8 @@ class UserController {
         $user = $this->user();
         $userName = $user["username"];
         $admin = $user["is_admin"];
-        $this->view->showHome($userName, $admin);
+        $user_id = $user["user_id"];
+        $this->view->showHome($userName, $admin, $user_id);
     }
 
     public function showLogin() {
@@ -92,6 +93,7 @@ class UserController {
         }
     }
 
+    //Compruebo si es un usaurio existe en la base de datos
     public function verifyUser() {
         $usermail = $_POST['email'];
         $password = $_POST['password'];
@@ -113,11 +115,11 @@ class UserController {
 
         //var_dump($user);
 
-        if (!$user){
+        if (!$user)
             $this->view->showLoginForm("El mail ingresado no está registado");
-        } else{
-            $this->view->showLoginForm("contraseña incorrecta");
-        }
+        else
+            $this->view->showLoginForm("La contraseña es incorrecta");
+        
     }
 
     //Método de deslogueo
@@ -164,6 +166,40 @@ class UserController {
             $this->view->reserveComplete($userName, $admin, $room_number, $user_id, $check_in, $check_out);
         else 
             $this->view->error($userName, $admin, $room_number, $check_in, $check_out. "Ocurrió un error inseperado al intentar reservar la habitación");
+    }
+
+    //Redirecciona a la vista de todas las reservas realizadas por una persona
+    public function showReserves($user_id){
+        //Compruebo que sea un usuario logueado
+        $this->checkLoggedUser();
+
+        //Traigo todas las reservas de ese usuario
+        $bookings = $this->bookingModel->getBookingsByUserId($user_id);
+
+        $user = $this->user();
+        $userName = $user["username"];
+        $admin =  $user["is_admin"];
+        $user_id = $user["user_id"];
+
+        $this->view->showBookings($userName, $admin, $user_id, $bookings);
+    }
+
+    //Envía la información al modelo para eliminar una reserva realizada
+    public function deleteBooking($booking_id){
+        //Compruebo que sea un usuario logueado
+        $this->checkLoggedUser();
+
+        $user = $this->user();
+        $userName = $user["username"];
+        $admin =  $user["is_admin"];
+        $user_id = $user["user_id"];
+
+        $success = $this->bookingModel->deleteById($booking_id);
+
+        if($success)
+            $this->view->successCancel($userName, $admin, $user_id);
+        else
+            $this->view->failCancel($userName, $admin, $user_id);
     }
 
     //Tomo el usuario que está logueado

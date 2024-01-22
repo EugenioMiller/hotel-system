@@ -3,7 +3,9 @@
 {include 'navbar.tpl'};
 
 <div class="container">
-    <h2>Seleccione la habitación que desea reservar</h2>
+
+    {if $rooms}
+    <h2 class="text-center">Seleccione la habitación que desea reservar</h2>
 
     <table class="table table-striped table-info">
             <td class= "titleTable">Número de habitación</td>
@@ -26,6 +28,11 @@
                     </tr>
                 {/foreach}
     </table>
+    {else}
+
+    <h3>Actualmente no hay habitaciones disponibles para las fechas que está buscando. Sepa disculpar las molestias.</h3>
+
+    {/if}
 </div>
 
 {include 'footer.tpl'}

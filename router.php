@@ -44,6 +44,12 @@
         case 'reserveRoom':
             $userController->reserve($params[1], $params[2], $params[3], $params[4]);
         break;
+        case 'adminReserves':
+            $userController->showReserves($params[1]);
+        break;
+        case 'deleteBooking':
+            $userController->deleteBooking($params[1]);
+        break;
         case 'admin':
             $adminController->showAdmin();
         break;
