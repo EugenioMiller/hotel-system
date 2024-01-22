@@ -1,6 +1,5 @@
 <?php
-    // require_once 'controllers/public.controller.php';
-    // require_once 'controllers/admin.controller.php';
+    require_once 'controllers/admin.controller.php';
     require_once 'controllers/user.controller.php';
 
     // Se define la URL base de forma dinámica
@@ -13,37 +12,52 @@
 
     // toma la acción que viene del usuario y parsea los parámetros
     $accion = $_GET['action']; 
-    $parametros = explode('/', $accion);
+    $params = explode('/', $accion);
+
+    //Instancio controladores
+    $userController = new UserController();
+    $adminController = new AdminController();
 
     // decide que camino tomar según TABLA DE RUTEO
-    switch ($parametros[0]) {
+    switch ($params[0]) {
         case 'home':
-            $controller = new UserController();
-            $controller->showHome();
+            $userController->showHome();
         break;
         case 'login':
-            $controller = new UserController();
-            $controller->showLogin();
+            $userController->showLogin();
         break;
         case "verifyUser": 
-            $controller = new UserController();
-            $controller->verifyUser();
+            $userController->verifyUser();
         break;
         case 'register':
-            $controller = new UserController();
-            $controller->showRegisterForm();
+            $userController->showRegisterForm();
         break;
         case 'registerComplete':
-            $controller = new UserController();
-            $controller->sendRegister();
+            $userController->sendRegister();
         break;
         case 'logout':
-            $controller = new UserController();
-            $controller->logout();
+            $userController->logout();
+        break;
+        case 'admin':
+            $adminController->showAdmin();
+        break;
+        case 'addRoom':
+            $adminController->newRoom();
+        break;
+        case 'createRoom':
+            $adminController->createRoom();
+        break;
+        case 'editRoom':
+            $adminController->showEdit($params[1]);
+        break;
+        case 'saveChanges':
+            $adminController->edit($params[1]);
+        break;
+        case 'deleteRoom':
+            $adminController->delete($params[1]);
         break;
         default:  
-            $controller = new UserController();
-            $controller->showHome();
+            $userController->showHome();
         break;
 
     }

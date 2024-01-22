@@ -18,7 +18,9 @@ class UserView {
     //     $this->smarty->display('showListRooms.tpl');
     // }
 
-    public function showHome() {
+    public function showHome($userName = null, $admin = null) {
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
         $this->smarty->display('home.tpl');
     }
 

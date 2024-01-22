@@ -33,7 +33,7 @@
             {/if}
     </form>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-        <p>Ó, para realizar una reserva, registrese</p>
+        <p>O, para realizar una reserva, registrese</p>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <a href="register"><button class="mt-2 btn btn-info btn-sm">Registrarse</button></a>

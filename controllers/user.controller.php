@@ -41,7 +41,10 @@ class UserController {
     public function showHome() {
         //Compruebo que el usuario esté logueado para ingresar al home
         $this->checkLoggedUser();
-        $this->view->showHome();
+        $user = $this->user();
+        $userName = $user["username"];
+        $admin = $user["is_admin"];
+        $this->view->showHome($userName, $admin);
     }
 
     public function showLogin() {
@@ -120,7 +123,7 @@ class UserController {
     }
 
     private function user(){
-        if (session_start()){
+        if (isset($_SESSION['logged'])){
             $user= $_SESSION;
         }
         return $user;

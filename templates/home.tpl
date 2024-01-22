@@ -1,3 +1,10 @@
-<h1>Home</h1>
+{include 'head.tpl'}
 
-<a href="logout">Cerrar sesión</a>
+{include 'navbar.tpl'};
+
+<div class="container">
+    <h1>Home</h1>
+</div>
+
+
+{include 'footer.tpl'}

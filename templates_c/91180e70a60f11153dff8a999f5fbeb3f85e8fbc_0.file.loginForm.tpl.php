@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2024-01-21 21:12:58
+/* Smarty version 4.3.4, created on 2024-01-22 14:39:01
   from 'C:\xampp\htdocs\hotel-system\templates\loginForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_65ad7aca3a5e35_79105630',
+  'unifunc' => 'content_65ae6ff5a34635_77977231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '91180e70a60f11153dff8a999f5fbeb3f85e8fbc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\hotel-system\\templates\\loginForm.tpl',
-      1 => 1705867976,
+      1 => 1705930739,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_65ad7aca3a5e35_79105630 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65ae6ff5a34635_77977231 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -62,7 +62,7 @@ $_smarty_tpl->_subTemplateRender('file:head.tpl', $_smarty_tpl->cache_id, $_smar
             <?php }?>
     </form>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-        <p>Ó, para realizar una reserva, registrese</p>
+        <p>O, para realizar una reserva, registrese</p>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <a href="register"><button class="mt-2 btn btn-info btn-sm">Registrarse</button></a>
