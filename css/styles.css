@@ -16,3 +16,15 @@ body {
     height: 40px;
     color: white;
 }
+
+.success {
+    background-color: rgb(113, 246, 113);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.error {
+    background-color: rgb(244, 83, 83);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}

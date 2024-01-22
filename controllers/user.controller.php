@@ -1,6 +1,8 @@
 <?php
 
 require_once 'models/user.model.php';
+require_once 'models/room.model.php';
+require_once 'models/booking.model.php';
 require_once 'views/user.view.php';
 
 class UserController {
@@ -10,6 +12,8 @@ class UserController {
 
     public function __construct() {
         $this->userModel = new UserModel();
+        $this->roomModel = new RoomModel();
+        $this->bookingModel = new BookingModel();
         $this->view = new UserView();
     }
 
@@ -116,12 +120,53 @@ class UserController {
         }
     }
 
+    //Método de deslogueo
     public function logout() {
         session_start();
         session_destroy();
         header("Location: " . BASE_URL . 'login');
     }
 
+    //Función de búsqueda de habitaciones por fecha
+    public function search() {
+        $this->checkLoggedUser();
+        //Tomo los valores de búsqueda
+        $check_in = $_POST['check_in'];
+        $check_out = $_POST['check_out'];
+
+        $user = $this->user();
+        $userName = $user["username"];
+        $admin =  $user["is_admin"];
+        $user_id = $user["user_id"];
+
+        //Compruebo que los campos no estén vacíos
+        if(empty($check_in) || empty($check_out)){
+            $this->view->showHome($userName, $admin, "Indique ambas fechas para realizar la búsqueda");
+            die();
+        }
+
+        $rooms = $this->roomModel->getFreeRooms($check_in, $check_out);
+
+        $this->view->showResults($userName, $admin, $rooms, $user_id, $check_in, $check_out);
+    }
+
+    //Método que envía la reserva al modelo
+    public function reserve($room_number, $user_id, $check_in, $check_out) {
+        $this->checkLoggedUser();
+        //Envío los datos al modelo de booking para que realice la reserva
+        $succes = $this->bookingModel->saveReserve($room_number, $user_id, $check_in, $check_out);
+
+        $user = $this->user();
+        $userName = $user["username"];
+        $admin =  $user["is_admin"];
+
+        if($succes)
+            $this->view->reserveComplete($userName, $admin, $room_number, $user_id, $check_in, $check_out);
+        else 
+            $this->view->error($userName, $admin, $room_number, $check_in, $check_out. "Ocurrió un error inseperado al intentar reservar la habitación");
+    }
+
+    //Tomo el usuario que está logueado
     private function user(){
         if (isset($_SESSION['logged'])){
             $user= $_SESSION;

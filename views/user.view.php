@@ -12,15 +12,10 @@ class UserView {
         $this->smarty->assign('titulo', "Hotel");
     }
 
-    // public function showListRooms($rooms, $user = null){
-    //     $this->smarty->assign('list',"Lista de habitaciones");
-    //     $this->smarty->assign('user', $user);
-    //     $this->smarty->display('showListRooms.tpl');
-    // }
-
-    public function showHome($userName = null, $admin = null) {
+    public function showHome($userName = null, $admin = null, $error = null) {
         $this->smarty->assign('userName', $userName);
         $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('home.tpl');
     }
 
@@ -34,5 +29,35 @@ class UserView {
 
     public function showFormRegister() {
         $this->smarty->display('registerForm.tpl');
+    }
+
+    public function showResults($userName = null, $admin = null, $rooms = null, $user_id = null, $check_in, $check_out){
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('rooms', $rooms);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->assign('check_in', $check_in);
+        $this->smarty->assign('check_out', $check_out);
+        $this->smarty->display('results.tpl');
+    }
+
+    public function reserveComplete($userName = null, $admin = null, $room_number, $user_id, $check_in, $check_out) {
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('room_number', $room_number);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->assign('check_in', $check_in);
+        $this->smarty->assign('check_out', $check_out);
+        $this->smarty->display('successReserve.tpl');
+    }
+
+    public function error($userName = null, $admin = null, $room_number, $user_id, $check_in, $check_out) {
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('room_number', $room_number);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->assign('check_in', $check_in);
+        $this->smarty->assign('check_out', $check_out);
+        $this->smarty->display('errorReserved.tpl');
     }
 }

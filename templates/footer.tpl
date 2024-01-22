@@ -1,4 +1,6 @@
-</div>          
+</div>   
+
+<script src="js/date.js"></script>
 </body>
    </html>
 
