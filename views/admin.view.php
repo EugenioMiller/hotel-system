@@ -20,16 +20,18 @@ class AdminView {
         $this->smarty->display('admin.tpl');
     }
 
-    public function addRoom($userName = null, $admin = null, $error = null) {
+    public function addRoom($userName = null, $admin = null, $user_id, $error = null) {
         $this->smarty->assign('userName', $userName);
         $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
         $this->smarty->assign('error', $error);
         $this->smarty->display('formAddRoom.tpl');
     }
 
-    public function editRoom($userName = null, $admin = null, $error = null, $room = null) {
+    public function editRoom($userName = null, $admin = null, $user_id, $error = null, $room = null) {
         $this->smarty->assign('userName', $userName);
         $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
         $this->smarty->assign('error', $error);
         $this->smarty->assign('room', $room);
         $this->smarty->display('formEditRoom.tpl');

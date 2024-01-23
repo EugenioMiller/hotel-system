@@ -25,7 +25,7 @@
             <select class="form-control" name="air" id="exampleFormControlSelect1">
                 {if $room->air === 1}
                 <option value="1" selected>SI</option>
-                <option value="0">NOI</option>
+                <option value="0">NO</option>
                 {else}
                 <option value="1" >SI</option>
                 <option value="0" selected>NO</option>

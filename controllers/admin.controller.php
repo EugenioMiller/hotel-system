@@ -45,7 +45,10 @@ class AdminController {
 
     public function newRoom() {
         $this->checkAdminUser();
-        $this->view->addRoom();
+        $user = $this->user();
+        $admin = $user["is_admin"];
+        $user_id = $user["user_id"];
+        $this->view->addRoom(null, $admin, $user_id);
     }
 
     public function createRoom() {
@@ -59,16 +62,20 @@ class AdminController {
         $wifi= $_POST['wifi'];
         $price= $_POST['price'];
 
+        $user = $this->user();
+        $admin = $user["is_admin"];
+        $user_id = $user["user_id"];
+
         //Primero compruebo que no lleguen datos vacíos
         if($room_number === "" || $beds === "" || $price === ""){
-            $this->view->addRoom(null, null, "Complete todos los datos para poder agregar habitación");
+            $this->view->addRoom(null, $admin, $user_id, "Complete todos los datos para poder agregar habitación");
             die();
         }
 
         //Segundo compruebo que el número de habitación no exista en la DB
         $numberExist = $this->roomModel->getRoomByNumber($room_number); 
         if($numberExist) {
-            $this->view->addRoom(null, null, "El número de habitación ya existe");
+            $this->view->addRoom(null, $admin, $user_id, "El número de habitación ya existe");
             die();
         }
 
@@ -95,7 +102,12 @@ class AdminController {
         $this->checkAdminUser();
         $room = $this->roomModel->getRoomByNumber($room_number);
 
-        $this->view->editRoom(null, null, null, $room);
+        
+        $user = $this->user();
+        $admin = $user["is_admin"];
+        $user_id = $user["user_id"];
+
+        $this->view->editRoom(null, $admin, $user_id, null, $room);
     }
 
     //Función que envía los datos nuevos al modelo
