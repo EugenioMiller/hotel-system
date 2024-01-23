@@ -52,6 +52,11 @@
             <input step="any" type="number" name="price" class="form-control" id="exampleInputPassword1" placeholder="Precio" autocomplete="off">
         </div>
 
+        <div class="mb-3">
+            <label for="" class="form-label">Imagen</label>
+            <input type="text" name="img" class="form-control" id="exampleInputPassword1" placeholder="Agregue el link de la imagen" autocomplete="off">
+        </div>
+
         <input type="submit" value="Agregar habitación" class="btn btn-success">
     </form>
 </div>

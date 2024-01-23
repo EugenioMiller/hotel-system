@@ -64,6 +64,11 @@
             <label for="">Precio</label>
             <input type="number" name="price" value="{$room->price}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
         </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Imagen</label>
+            <input type="text" name="img" class="form-control" id="exampleInputPassword1"  value="{$room->img}">
+        </div>
         
         
         <input type="submit" value="Guardar cambios" class="btn btn-primary btnGuardarCambios mt-2">

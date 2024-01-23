@@ -61,13 +61,14 @@ class AdminController {
         $tv= $_POST['tv'];
         $wifi= $_POST['wifi'];
         $price= $_POST['price'];
+        $img= $_POST['img'];
 
         $user = $this->user();
         $admin = $user["is_admin"];
         $user_id = $user["user_id"];
 
         //Primero compruebo que no lleguen datos vacíos
-        if($room_number === "" || $beds === "" || $price === ""){
+        if($room_number === "" || $beds === "" || $price === "" || $img === ""){
             $this->view->addRoom(null, $admin, $user_id, "Complete todos los datos para poder agregar habitación");
             die();
         }
@@ -81,7 +82,7 @@ class AdminController {
 
         //Si pasa los filtros, agrego la habitación a la DB
 
-        $this->roomModel->addNewRoom($room_number, $beds, $air, $tv, $wifi, $price);
+        $this->roomModel->addNewRoom($room_number, $beds, $air, $tv, $wifi, $price, $img);
         $this->showAllRooms();
 
     }
@@ -119,15 +120,16 @@ class AdminController {
         $tv= $_POST['tv'];
         $wifi= $_POST['wifi'];
         $price= $_POST['price'];
+        $img= $_POST['img'];
 
         //Primero compruebo que no lleguen datos vacíos
-        if($beds === "" || $price === ""){
+        if($beds === "" || $price === "" || $img === ""){
             $room = $this->roomModel->getRoomByNumber($room_number);
             $this->view->editRoom(null, null, "Complete todos los datos para poder editar habitación", $room);
             die();
         }
 
-        $this->roomModel->updateRoom($room_number, $beds, $air, $tv, $wifi, $price);
+        $this->roomModel->updateRoom($room_number, $beds, $air, $tv, $wifi, $price, $img);
         $this->showAllRooms();
     }
 

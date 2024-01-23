@@ -35,9 +35,9 @@ class RoomModel {
     }
 
     //Función para agregar una nueva habitación a la DB
-    public function addNewRoom($room_number, $beds, $air, $tv, $wifi, $price) {
-        $sentence = $this->db->prepare("INSERT INTO rooms(room_number, beds, air, tv, wifi, price) VALUE (?, ?, ?, ?, ?, ?)");
-        $sentence->execute([$room_number, $beds, $air, $tv, $wifi, $price]);
+    public function addNewRoom($room_number, $beds, $air, $tv, $wifi, $price, $img) {
+        $sentence = $this->db->prepare("INSERT INTO rooms(room_number, beds, air, tv, wifi, price, img) VALUE (?, ?, ?, ?, ?, ?, ?)");
+        $sentence->execute([$room_number, $beds, $air, $tv, $wifi, $price, $img]);
     }
 
     //Función que elimina una habitación
@@ -48,9 +48,9 @@ class RoomModel {
     }
 
     //Función para editar una habitación en la base de datos
-    public function updateRoom($room_number, $beds, $air, $tv, $wifi, $price){
-        $sentence = $this->db->prepare("UPDATE rooms SET beds=?, air=?, tv=?, wifi=?, price=? WHERE rooms.room_number=?");
-        $sentence->execute([$beds, $air, $tv, $wifi, $price, $room_number]);
+    public function updateRoom($room_number, $beds, $air, $tv, $wifi, $price, $img){
+        $sentence = $this->db->prepare("UPDATE rooms SET beds=?, air=?, tv=?, wifi=?, price=?, img=? WHERE rooms.room_number=?");
+        $sentence->execute([$beds, $air, $tv, $wifi, $price, $img, $room_number]);
     }
 
     //Función para treaer de base de datos las habitaciones libres

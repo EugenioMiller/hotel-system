@@ -2,11 +2,8 @@
 
 <script src="js/date.js"></script>
 </body>
-   </html>
-
+</html>
 
 <footer class="footer">
-   <div class="container">
-      <p class="mt-2 text-center">© Derechos reservados</p>  
-   </div>
+   <p class="mt-2 text-center">© Derechos reservados</p>  
 </footer>

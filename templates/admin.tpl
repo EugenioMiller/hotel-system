@@ -1,56 +1,48 @@
 {include 'head.tpl'}
 
-{include 'navbar.tpl'};
+{include 'navbar.tpl'}
 
 <div class="container">
-    <h1>Administrar</h1>
 
-    <table class="table table-striped table-primary">
-            <td class="titleTable">Número de habitación</td>
-            <td class="titleTable">Cantidad de camas</td>
-            <td class="titleTable">Aire acondicionado</td>
-            <td class="titleTable">Tiene TV</td>
-            <td class="titleTable">Tiene wifi</td>
-            <td class="titleTable">Precio</td>
-            <td class="titleTable">Editar</td>
-            <td class="titleTable">Eliminar</td>
+    <div class= "d-flex justify-content-start mt-4">
+        <a href="addRoom"><button type="button" class="btn btn-primary">+Agregar habitación</button></a> 
+    </div>
 
-                {foreach $rooms item=room}
-                    <tr>
-                        <td class="room"><b>{$room->room_number}</b></td>
-                        <td class="room"><b>{$room->beds}</b></td>
-                        <td class="room">
-                            {if $room->air === 1}
-                            SI
-                            {else}
-                            NO
-                            {/if}
-                        </td>
-                        <td class="room">
-                            {if $room->tv === 1}
-                            SI
-                            {else}
-                            NO
-                            {/if}
-                        </td>
-                        <td class="room">
-                            {if $room->wifi === 1}
-                            SI
-                            {else}
-                            NO
-                            {/if}
-                        </td>
-                        <td class="room">{$room->price}</td>
-                        <td class="room"> <a class="btn btn-outline-success" href="editRoom/{$room->room_number}">Editar</a></td>
-                        <td class="room"> <a class="btn btn-outline-danger" href="deleteRoom/{$room->room_number}">Eliminar</a></td>
-                    </tr>
-                {/foreach}
-    </table>
-
-
-        <div class= "col-md-3">
-            <a href="addRoom"><button type="button" class="btn btn-primary">Agregar habitación</button></a> 
+    <div class="d-flex flex-wrap justify-content-evenly mb-5">
+    {foreach $rooms item=room}
+        <div class="card mt-4" style="width: 18rem;">
+        <img src="{$room->img}" class="card-img-top" alt="Imagen de habitación ">
+            <div class="card-body">
+                <h5 class="card-title">Habitación {$room->room_number} / ${$room->price}</h5>
+                <p class="card-text">
+                Camas: {$room->beds}.
+                </br>
+                {if $room->air === 1}
+                Cuenta con aire acondicionado.
+                {else}
+                No cuenta con aire acondicionado. 
+                {/if}
+                </br>
+                {if $room->tv === 1}
+                Cuenta con televisión.
+                {else}
+                No cuenta con televisión. 
+                {/if}
+                </br>
+                {if $room->wifi === 1}
+                Cuenta con wifi.
+                {else}
+                No cuenta con wifi. 
+                {/if}
+                </p>
+                <a class="btn btn-success" href="editRoom/{$room->room_number}">Editar</a>
+                <a class="btn btn-danger" href="deleteRoom/{$room->room_number}">Eliminar</a>
+            </div>
         </div>
+    {/foreach}
+    </div>
+
+
 </div>
 
 {include 'footer.tpl'}
