@@ -20,9 +20,8 @@ class UserView {
         $this->smarty->display('home.tpl');
     }
 
-    public function showLoginForm($error = null, $user = null, $name = null, $surname = null) {
+    public function showLoginForm($error = null, $name = null, $surname = null) {
         $this->smarty->assign('error', $error);
-        $this->smarty->assign('user', $user);
         $this->smarty->assign('name', $name);
         $this->smarty->assign('surname', $surname);
         $this->smarty->display('loginForm.tpl');

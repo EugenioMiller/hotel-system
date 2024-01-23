@@ -65,7 +65,7 @@ class UserController {
     }
 
     public function sendRegister(){
-        $user= $this->user();
+  
         $name= $_POST['name'];
         $surname= $_POST['surname'];
         $email= $_POST['email'];
@@ -83,7 +83,7 @@ class UserController {
             $encrypt = password_hash ($password, PASSWORD_DEFAULT); //Encripto contraseña de usuario
             $succes = $this->userModel->newUser($name, $surname, $email, $encrypt);
                 if ($succes){
-                    $this->view->showLoginForm(null, null, $name, $surname);
+                    $this->view->showLoginForm(null, $name, $surname);
                 }
             }
         }
