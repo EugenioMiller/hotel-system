@@ -36,4 +36,11 @@ class AdminView {
         $this->smarty->assign('room', $room);
         $this->smarty->display('formEditRoom.tpl');
     }
+
+    public function showAllBookings($admin = null, $user_id, $bookings = null) {
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('user_id', $user_id);
+        $this->smarty->assign('bookings', $bookings);
+        $this->smarty->display('allBookings.tpl');
+    }
 }

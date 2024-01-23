@@ -6,6 +6,9 @@
         <li class="nav-item">
             <a class="nav-link active p-2 mt-2" href="admin">Administración</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link active p-2 mt-2" href="bookings">Reservaciones</a>
+        </li>
         {else}
         <li class="nav-item">
             <a class="nav-link active p-2 mt-2" href="adminReserves/{$user_id}">Mis reservas</a>

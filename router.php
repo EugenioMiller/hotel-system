@@ -50,6 +50,9 @@
         case 'deleteBooking':
             $userController->deleteBooking($params[1]);
         break;
+        case 'bookings':
+            $adminController->allBookings();
+        break;
         case 'admin':
             $adminController->showAdmin();
         break;

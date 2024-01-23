@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/room.model.php';
+require_once 'models/booking.model.php';
 require_once 'views/admin.view.php';
 
 class AdminController {
@@ -10,6 +11,7 @@ class AdminController {
 
     public function __construct() {
         $this->roomModel = new RoomModel();
+        $this->bookingModel = new BookingModel();
         $this->view = new AdminView();
     }
 
@@ -131,6 +133,19 @@ class AdminController {
 
         $this->roomModel->updateRoom($room_number, $beds, $air, $tv, $wifi, $price, $img);
         $this->showAllRooms();
+    }
+
+    //Función que le pide al modelo todas las reservaciones realizadas
+    public function allBookings() {
+        $this->checkAdminUser();
+        $bookings = $this->bookingModel->getAllByDate();
+
+        $user = $this->user();
+        $admin = $user["is_admin"];
+        $user_id = $user["user_id"];
+
+        $this->view->showAllBookings($admin, $user_id, $bookings);
+
     }
 
 

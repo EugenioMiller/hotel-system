@@ -38,4 +38,13 @@ class BookingModel {
         //ejecuto sentencia
         return $sentence->execute([$booking_id]);
     }
+
+    //Función para traer de base de datos todas las reservaciones en orden cronológico
+    public function getAllByDate(){
+        $sentence = $this->db->prepare("SELECT * FROM bookings ORDER BY check_in ASC");
+        $sentence->execute();
+        $bookings = $sentence->fetchAll(PDO::FETCH_OBJ);
+
+        return $bookings;
+    }
 }

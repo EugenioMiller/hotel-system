@@ -7,9 +7,9 @@
     {if $rooms}
     <h2 class="text-center">Seleccione la habitación que desea reservar</h2>
 
-    <div class="d-flex justify-content-evenly mt-5">
+    <div class="d-flex flex-wrap justify-content-evenly mb-5">
     {foreach $rooms item=room}
-        <div class="card" style="width: 18rem;">
+        <div class="card mt-4" style="width: 18rem;">
         <img src="{$room->img}" class="card-img-top" alt="Imagen de habitación ">
             <div class="card-body">
                 <h5 class="card-title">Habitación {$room->room_number} / ${$room->price}</h5>
