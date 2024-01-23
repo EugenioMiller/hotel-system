@@ -7,6 +7,7 @@ require_once 'views/admin.view.php';
 class AdminController {
 
     private $roomModel;
+    private $bookingModel;
     private $view;
 
     public function __construct() {
