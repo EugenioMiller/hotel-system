@@ -12,10 +12,11 @@ class AdminView {
         $this->smarty->assign('titulo', "Hotel");
     }
 
-    public function adminTasks($userName = null, $admin = null, $rooms = null) {
+    public function adminTasks($userName = null, $admin = null, $rooms = null, $user_id) {
         $this->smarty->assign('userName', $userName);
         $this->smarty->assign('admin', $admin);
         $this->smarty->assign('rooms', $rooms);
+        $this->smarty->assign('user_id', $user_id);
         $this->smarty->display('admin.tpl');
     }
 

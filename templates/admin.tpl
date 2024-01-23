@@ -6,8 +6,8 @@
     <h1>Administrar</h1>
 
     <table class="table table-striped table-primary">
-            <td class= "titleTable">Número de habitación</td>
-            <td class= "titleTable">Cantidad de camas</td>
+            <td class="titleTable">Número de habitación</td>
+            <td class="titleTable">Cantidad de camas</td>
             <td class="titleTable">Aire acondicionado</td>
             <td class="titleTable">Tiene TV</td>
             <td class="titleTable">Tiene wifi</td>

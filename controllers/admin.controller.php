@@ -37,7 +37,10 @@ class AdminController {
     //Muestra la vista principal de los administradores
     public function showAllRooms(){
         $rooms = $this->roomModel->getAllRooms();
-        $this->view->adminTasks(null, null, $rooms);
+        $user = $this->user();
+        $admin = $user["is_admin"];
+        $user_id = $user["user_id"];
+        $this->view->adminTasks(null, $admin, $rooms, $user_id);
     }
 
     public function newRoom() {
