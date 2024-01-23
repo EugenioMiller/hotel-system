@@ -59,7 +59,14 @@
 
         <input type="submit" value="Agregar habitación" class="btn btn-success">
     </form>
+
+
+    <div class= "d-flex justify-content-start mt-4">
+        <a href="admin"><button type="button" class="btn btn-primary">Volver</button></a> 
+    </div>
+    
 </div>
+
 
 
 {include 'footer.tpl'}

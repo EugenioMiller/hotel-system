@@ -140,12 +140,13 @@ class AdminController {
     public function allBookings() {
         $this->checkAdminUser();
         $bookings = $this->bookingModel->getAllByDate();
-
+        
         $user = $this->user();
         $admin = $user["is_admin"];
         $user_id = $user["user_id"];
 
         $this->view->showAllBookings($admin, $user_id, $bookings);
+
 
     }
 

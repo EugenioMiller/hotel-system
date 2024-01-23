@@ -8,12 +8,18 @@
     {if $bookings}
     <table class="table table-striped table-primary">
             <td class= "titleTable">Número de habitación</td>
+            <td class= "titleTable">Nombre de cliente</td>
+            <td class= "titleTable">Apellido del cliente</td>
+            <td class= "titleTable">Email</td>
             <td class= "titleTable">Check-in</td>
             <td class= "titleTable">Check-out</td>
 
                 {foreach $bookings item=booking}
                     <tr>
                         <td class="room"><b>{$booking->fk_room_number}</b></td>
+                        <td class="room"><b>{$booking->name}</b></td>
+                        <td class="room"><b>{$booking->surname}</b></td>
+                        <td class="room"><b>{$booking->email}</b></td>
                         <td class="room"><b>{$booking->check_in}</b></td>
                         <td class="room">{$booking->check_out}</td>
                     </tr>

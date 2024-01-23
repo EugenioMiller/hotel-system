@@ -41,7 +41,7 @@ class BookingModel {
 
     //Función para traer de base de datos todas las reservaciones en orden cronológico
     public function getAllByDate(){
-        $sentence = $this->db->prepare("SELECT * FROM bookings ORDER BY check_in ASC");
+        $sentence = $this->db->prepare("SELECT * FROM bookings JOIN users WHERE bookings.fk_user_id = users.user_id ORDER BY check_in ASC");
         $sentence->execute();
         $bookings = $sentence->fetchAll(PDO::FETCH_OBJ);
 
