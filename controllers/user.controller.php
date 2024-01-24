@@ -73,25 +73,56 @@ class UserController {
 
         
         //Compruebo que no queden campos sin completar
-        if (!empty($name) && !empty($surname) &&!empty($email) && !empty($password)){
-            //Compruebo que el email ingresado no exista en la base de datos
-            $succes= $this->userModel->getUser($email);
-            if ($succes){
-                $this->view->showError("El email ingresado ya está registrado", $user);
-            }
-            else{
-            $encrypt = password_hash ($password, PASSWORD_DEFAULT); //Encripto contraseña de usuario
-            $succes = $this->userModel->newUser($name, $surname, $email, $encrypt);
+        if ($name === "" || $surname === "" || $email === "" || $password === ""){
+            $this->view->showFormRegister("Es necesario completar todos los campos para poder registrarse");
+            die();
+        }
+        else {
+            //Compruebo contaseña
+            $isValidPassword = $this->validPassword($password);
+
+            if($isValidPassword){
+                //Compruebo que el email ingresado no exista en la base de datos
+                $succes= $this->userModel->getUser($email);
                 if ($succes){
-                    $this->view->showLoginForm(null, $name, $surname);
+                    $this->view->showFormRegister("El email ingresado ya está registrado");
+                }
+                else{
+                    $encrypt = password_hash ($password, PASSWORD_DEFAULT); //Encripto contraseña de usuario
+                    $succes = $this->userModel->newUser($name, $surname, $email, $encrypt);
+                        if ($succes){
+                            $this->view->showLoginForm(null, $name, $surname);
+                        }
                 }
             }
         }
-        else{
-            $this->view->showError("No completó todos los campos", $user);
-            die();
-        }
     }
+            
+    //Función para determinar si la contraseña es válida
+    private function validPassword($password){
+        if(strlen($password) < 6){
+           $this->view->showFormRegister("La clave debe tener al menos 6 caracteres");
+           die();
+        }
+        if(strlen($password) > 16){
+            $this->view->showFormRegister("La clave no puede tener más de 16 caracteres");
+            die();
+         }
+        if (!preg_match('`[a-z]`',$password)){
+           $this->view->showFormRegister("La clave debe tener al menos una letra minúscula");
+           die();
+        }
+        if (!preg_match('`[A-Z]`',$password)){
+           $this->view->showFormRegister("La clave debe tener al menos una letra mayúscula");
+           die();
+        }
+        if (!preg_match('`[0-9]`',$password)){
+           $this->view->showFormRegister("La clave debe tener al menos un caracter numérico");
+           die();
+        }
+        $error_clave = "";
+        return true;
+     }
 
     //Compruebo si es un usaurio existe en la base de datos
     public function verifyUser() {
