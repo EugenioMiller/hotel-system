@@ -13,6 +13,7 @@
             <td class= "titleTable">Email</td>
             <td class= "titleTable">Check-in</td>
             <td class= "titleTable">Check-out</td>
+            <td class="titleTable">Dar de baja</td>
 
                 {foreach $bookings item=booking}
                     <tr>
@@ -22,6 +23,7 @@
                         <td class="room"><b>{$booking->email}</b></td>
                         <td class="room"><b>{$booking->check_in}</b></td>
                         <td class="room">{$booking->check_out}</td>
+                        <td class="room"> <a class="btn btn-warning" href="deleteBooking/{$booking->booking_id}">Cancelar reserva</a></td>
                     </tr>
                 {/foreach}
     </table>
